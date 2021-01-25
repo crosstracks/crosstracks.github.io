@@ -7,19 +7,20 @@
 <h1>Page not found</h1>
   <a href="javascript:test()">Error</a>
   <div id="id01"></div>
-
 <script>
-      var r = new XMLHttpRequest();
-    r.open("GET", "https://crosstracks2.apphb.com/all/ahv/from/wat?accessToken=DA1C7740-9DA0-11E4-80E6-A920340000B1", true);
 function test() {
+var r = new XMLHttpRequest();
+r.open("GET", "https://crosstracks2.apphb.com/all/ahv/from/wat?accessToken=b72ce2e1-f0f3-41e9-8aea-0ff8bfdde37f", true);
+r.onreadystatechange = function () {
     if (r.readyState != 4 || r.status != 200) return;
     var resp = JSON.parse(r.response);
     if (resp.trainServices && resp.trainServices.length > 0) {
-        document.getElementById("id01").innerHTML = ("The next train to arrive at " + resp.locationName + " from " + resp.filterLocationName + " will get in at " + resp.trainServices[0].sta);
+        alert("The next train to arrive at " + resp.locationName + " from " + resp.filterLocationName + " will get in at " + resp.trainServices[0].sta);
     } else {
         alert("Sorry, no trains from " + resp.filterLocationName + " arriving soon");
     }
 };
 r.send();
+};
 </script>
 </body>
