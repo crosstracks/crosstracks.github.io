@@ -52,6 +52,7 @@ ON TIME
 <td id="2eID"></td>
 </tr>
 </table>
+<div id="MsgID" ></div>
 <br><hr><br>
   <div id="id01"></div><br><<br>
 <script>
@@ -77,10 +78,11 @@ document.getElementById("1cID").innerHTML = resp.trainServices[0].sta;
 document.getElementById("1dID").innerHTML = resp.trainServices[0].platform;
 document.getElementById("1eID").innerHTML = resp.trainServices[0].etd;
 document.getElementById("2aID").innerHTML = resp.locationName;
-document.getElementById("2bID").innerHTML = resp.trainServices[1].destination.locationName ;
+document.getElementById("2bID").innerHTML = resp.trainServices[1].destination.locationName;
 document.getElementById("2cID").innerHTML = resp.trainServices[1].sta;
 document.getElementById("2dID").innerHTML = resp.trainServices[1].platform;
 document.getElementById("2eID").innerHTML = resp.trainServices[1].etd;
+document.getElementById("msgID").innerHTML = resp.nrccMessages;
  } else {
         alert("Sorry, no trains from " + resp.filterLocationName + " arriving soon");
     }
