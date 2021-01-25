@@ -54,7 +54,7 @@ ON TIME
 </table>
 <div id="msgID" ></div>
 <br><hr><br>
-  <div id="id01"></div><br><br>
+  <p id="id01"></p><br><br>
 <script>
 function test() {
 var r = new XMLHttpRequest();
@@ -78,7 +78,7 @@ document.getElementById("1cID").innerHTML = resp.trainServices[0].sta;
 document.getElementById("1dID").innerHTML = resp.trainServices[0].platform;
 document.getElementById("1eID").innerHTML = resp.trainServices[0].etd;
 document.getElementById("2aID").innerHTML = resp.locationName;
-document.getElementById("2bID").innerHTML = resp.trainServices[1].destination.locationName;
+document.getElementById("2bID").innerHTML = resp.trainServices[1].destination["locationName"];
 document.getElementById("2cID").innerHTML = resp.trainServices[1].sta;
 document.getElementById("2dID").innerHTML = resp.trainServices[1].platform;
 document.getElementById("2eID").innerHTML = resp.trainServices[1].etd;
