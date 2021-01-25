@@ -18,7 +18,7 @@ title: Page Not Found
   From: <input type="text" id="start" name="start">
   To: <input type="text" id="end" name="end">
   Token: <input type="text" id="token" name="token">
-  <button src="javascript:test()">Error</button>
+  <button onclick="javascript:test()">Error</button>
   <a href="javascript:test()">test</a>
   <br><br>
 <table class="myTable">
@@ -45,6 +45,13 @@ On Time?
 <td id="1dID"></td>
 <td id="1eID"></td>
 </tr>
+<tr>
+<td id="2aID"></td>
+<td id="2bID"></td>
+<td id="2cID"></td>
+<td id="2dID"></td>
+<td id="2eID"></td>
+</tr>
 </table>
 <br><hr><br>
   <div id="id01"></div><br><<br>
@@ -66,11 +73,16 @@ r.onreadystatechange = function () {
     if (resp.trainServices && resp.trainServices.length > 0) {
         alert("The next train to arrive at " + resp.locationName + " for " + resp.filterLocationName + " will get in at " + resp.trainServices[0].sta);
       document.getElementById("id01").innerHTML = "The next train to arrive at " + resp.locationName + " for " + resp.filterLocationName + " will get in at " + resp.trainServices[0].sta + " on platform " + resp.trainServices[0].platform + " (" + resp.trainServices[0].etd + ").";
-   document.getElementById("1aID").innerHTML = resp.locationName
+document.getElementById("1aID").innerHTML = resp.locationName
 document.getElementById("1bID").innerHTML = resp.filterLocationName
 document.getElementById("1cID").innerHTML = resp.trainServices[0].sta
 document.getElementById("1dID").innerHTML = resp.trainServices[0].platform
 document.getElementById("1eID").innerHTML = resp.trainServices[0].etd
+document.getElementById("2aID").innerHTML = resp.locationName
+document.getElementById("2bID").innerHTML = resp.filterLocationName
+document.getElementById("2cID").innerHTML = resp.trainServices[1].sta
+document.getElementById("2dID").innerHTML = resp.trainServices[1].platform
+document.getElementById("2eID").innerHTML = resp.trainServices[1].etd
  } else {
         alert("Sorry, no trains from " + resp.filterLocationName + " arriving soon");
     }
