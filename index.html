@@ -64,7 +64,7 @@ var end = document.getElementById("end").value;
 var url1 = "https://crosstracks2.apphb.com/all/";
 var url2 = "/from/"
 var url3 = "?accessToken="
-var points = [url1, start, url2, end, url3, token];
+var points = [url1, end, url2, start, url3, token];
 var url0 = points.join('');
 r.open("GET", url0, true);
 r.onreadystatechange = function () {
@@ -78,7 +78,7 @@ document.getElementById("1cID").innerHTML = resp.trainServices[0].sta;
 document.getElementById("1dID").innerHTML = resp.trainServices[0].platform;
 document.getElementById("1eID").innerHTML = resp.trainServices[0].etd;
 document.getElementById("2aID").innerHTML = resp.locationName;
-document.getElementById("2bID").innerHTML = resp.trainServices[1].destination["locationName"];
+document.getElementById("2bID").innerHTML = resp.trainServices[1].destination[0].locationName;
 document.getElementById("2cID").innerHTML = resp.trainServices[1].sta;
 document.getElementById("2dID").innerHTML = resp.trainServices[1].platform;
 document.getElementById("2eID").innerHTML = resp.trainServices[1].etd;
