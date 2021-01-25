@@ -52,7 +52,7 @@ ON TIME
 <td id="2eID"></td>
 </tr>
 </table>
-<div id="MsgID" ></div>
+<div id="msgID" ></div>
 <br><hr><br>
   <div id="id01"></div><br><<br>
 <script>
@@ -72,7 +72,7 @@ r.onreadystatechange = function () {
     var resp = JSON.parse(r.response);
     if (resp.trainServices && resp.trainServices.length > 0) {
       document.getElementById("id01").innerHTML = "The next train to arrive at " + resp.locationName + " for " + resp.filterLocationName + " will get in at " + resp.trainServices[0].sta + " on platform " + resp.trainServices[0].platform + " (" + resp.trainServices[0].etd + ").";
-document.getElementById("1aID").innerHTML = resp.locationName
+document.getElementById("1aID").innerHTML = resp.locationName;
 document.getElementById("1bID").innerHTML = resp.trainServices[0].destination.locationName;
 document.getElementById("1cID").innerHTML = resp.trainServices[0].sta;
 document.getElementById("1dID").innerHTML = resp.trainServices[0].platform;
