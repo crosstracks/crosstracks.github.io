@@ -12,8 +12,8 @@
 function test() {
 var r = new XMLHttpRequest();
 var token = document.getElementById("firstname").value;
-var urk = "https://crosstracks2.apphb.com/all/ahv/from/wat?accessToken=" ++ token;
-r.open("GET", "https://crosstracks2.apphb.com/all/ahv/from/wat?accessToken=b72ce2e1-f0f3-41e9-8aea-0ff8bfdde37f", true);
+var url = "https://crosstracks2.apphb.com/all/ahv/from/wat?accessToken=" ++ token;
+r.open("GET", url, true);
 r.onreadystatechange = function () {
     if (r.readyState != 4 || r.status != 200) return;
     var resp = JSON.parse(r.response);
