@@ -27,7 +27,7 @@ r.onreadystatechange = function () {
     var resp = JSON.parse(r.response);
     if (resp.trainServices && resp.trainServices.length > 0) {
         alert("The next train to arrive at " + resp.locationName + " from " + resp.filterLocationName + " will get in at " + resp.trainServices[0].sta);
-      document.getElementById("id01").innerHTML = "<p>"The next train to arrive at " + resp.locationName + " from " + resp.filterLocationName + " will get in at " + resp.trainServices[0].sta</p>";
+      document.getElementById("id01").innerHTML = "The next train to arrive at " + resp.locationName + " from " + resp.filterLocationName + " will get in at " + resp.trainServices[0].sta;
     } else {
         alert("Sorry, no trains from " + resp.filterLocationName + " arriving soon");
     }
