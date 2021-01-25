@@ -9,9 +9,9 @@
   <div id="id01"></div>
 
 <script>
-  var r = new XMLHttpRequest();
-r.open("GET", "https://crosstracks2.apphb.com/all/ahv/from/wat?accessToken=b72ce2e1-f0f3-41e9-8aea-0ff8bfdde37f", true);
 function () {
+    var r = new XMLHttpRequest();
+    r.open("GET", "https://crosstracks2.apphb.com/all/ahv/from/wat?accessToken=b72ce2e1-f0f3-41e9-8aea-0ff8bfdde37f", true);
     if (r.readyState != 4 || r.status != 200) return;
     var resp = JSON.parse(r.response);
     if (resp.trainServices && resp.trainServices.length > 0) {
