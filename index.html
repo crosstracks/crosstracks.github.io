@@ -18,22 +18,21 @@ title: Page Not Found
   <br><br>
 <table>
 <tr>
-<td>
+<th>
 Departing From
-</td>
-<td>
+</th>
+<th>
 To
-</td>
-<td>
+</th>
+<th>
 Arriving
-</td>
-</tr>
-<td>
+</th>
+<th>
 Platform
-</td>
-<td>
+</th>
+<th>
 On Time? 
-</td>
+</th>
 <tr>
 <td id="1aID"></td>
 <td id="1bID"></td>
@@ -63,6 +62,10 @@ r.onreadystatechange = function () {
         alert("The next train to arrive at " + resp.locationName + " for " + resp.filterLocationName + " will get in at " + resp.trainServices[0].sta);
       document.getElementById("id01").innerHTML = "The next train to arrive at " + resp.locationName + " for " + resp.filterLocationName + " will get in at " + resp.trainServices[0].sta + " on platform " + resp.trainServices[0].platform + " (" + resp.trainServices[0].etd + ").";
    document.getElementById("1aID").innerHTML = resp.locationName
+document.getElementById("1bID").innerHTML = resp.filterLocationName
+document.getElementById("1cID").innerHTML = resp.trainServices[0].sta
+document.getElementById("1dID").innerHTML = resp.trainServices[0].platform
+document.getElementById("1eID").innerHTML = resp.trainServices[0].etd
  } else {
         alert("Sorry, no trains from " + resp.filterLocationName + " arriving soon");
     }
