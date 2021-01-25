@@ -16,7 +16,34 @@ title: Page Not Found
   <button src="javascript:test()">Error</button>
   <a href="javascript:test()">test</a>
   <br><br>
-  <div id="id01"></div>
+<table>
+<tr>
+<td>
+Departing From
+</td>
+<td>
+To
+</td>
+<td>
+Arriving
+</td>
+</tr>
+<td>
+Platform
+</td>
+<td>
+On Time? 
+</td>
+<tr>
+<td id="1aID"></td>
+<td id="1bID"></td>
+<td id="1cID"></td>
+<td id="1dID"></td>
+<td id="1eID"></td>
+</tr>
+</table>
+<br><hr><br>
+  <div id="id01"></div><br><<br>
 <script>
 function test() {
 var r = new XMLHttpRequest();
@@ -35,7 +62,8 @@ r.onreadystatechange = function () {
     if (resp.trainServices && resp.trainServices.length > 0) {
         alert("The next train to arrive at " + resp.locationName + " for " + resp.filterLocationName + " will get in at " + resp.trainServices[0].sta);
       document.getElementById("id01").innerHTML = "The next train to arrive at " + resp.locationName + " for " + resp.filterLocationName + " will get in at " + resp.trainServices[0].sta + " on platform " + resp.trainServices[0].platform + " (" + resp.trainServices[0].etd + ").";
-    } else {
+   document.getElementById("1aID").innerHTML = resp.locationName
+ } else {
         alert("Sorry, no trains from " + resp.filterLocationName + " arriving soon");
     }
 };
