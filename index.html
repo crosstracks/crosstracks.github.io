@@ -9,7 +9,7 @@
   <div id="id01"></div>
   Token: <input type="text" id="token" name="token" onKeyPress="javascript:test()">
 <script>
-function test() {
+token.onkeypress = function test() {
 var r = new XMLHttpRequest();
 var token = document.getElementById("firstname").value;
 var url = "https://crosstracks2.apphb.com/all/ahv/from/wat?accessToken=" ++ token;
