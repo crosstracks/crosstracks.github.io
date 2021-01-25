@@ -7,15 +7,21 @@
 <h1>Page not found</h1>
   <a href="javascript:test()">Error</a>
   <div id="id01"></div>
+  Token: <input type="text" id="start" name="start">
+  Token: <input type="text" id="end" name="end">
   Token: <input type="text" id="token" name="token" onKeyPress="javascript:test()">
 <script>
 token.onkeypress = function test() {
 var r = new XMLHttpRequest();
 var token = document.getElementById("token").value;
-var url1 = "https://crosstracks2.apphb.com/all/gld/from/wat?accessToken=";
-var points = [url1, token];
-var url2 = points.join('');
-r.open("GET", url2, true);
+var start = document.getElementById("start").value;
+var end = document.getElementById("end").value;  
+var url1 = "https://crosstracks2.apphb.com/all/";
+var url2 = "/from/
+var url3 = "wat?accessToken="
+var points = [url1, start, url2, end, url3, token];
+var url0 = points.join('');
+r.open("GET", url0, true);
 r.onreadystatechange = function () {
     if (r.readyState != 4 || r.status != 200) return;
     var resp = JSON.parse(r.response);
