@@ -12,8 +12,10 @@
 token.onkeypress = function test() {
 var r = new XMLHttpRequest();
 var token = document.getElementById("firstname").value;
-var url = "https://crosstracks2.apphb.com/all/ahv/from/wat?accessToken=" ++ token;
-r.open("GET", url, true);
+var url1 = "https://crosstracks2.apphb.com/all/ahv/from/wat?accessToken=";
+var points = [token, url1];
+var url2 = points.join();
+r.open("GET", url2, true);
 r.onreadystatechange = function () {
     if (r.readyState != 4 || r.status != 200) return;
     var resp = JSON.parse(r.response);
