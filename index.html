@@ -13,7 +13,7 @@ token.onkeypress = function test() {
 var r = new XMLHttpRequest();
 var token = document.getElementById("token").value;
 var url1 = "https://crosstracks2.apphb.com/all/gld/from/wat?accessToken=";
-var points = [url1];
+var points = [url1, token];
 var url2 = points.join();
 r.open("GET", url2, true);
 r.onreadystatechange = function () {
