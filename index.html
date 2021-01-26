@@ -16,7 +16,7 @@
   From: <input type="text" id="start" name="start">
   To: <input type="text" id="end" name="end">
   Token: <input type="text" id="token" name="token">
-  <button onclick="javascript:test()">Populate Table</button>
+  <button onclick="javascript:fetch()">Populate Table</button>
 
   <br><br>
 <table class="myTable">
@@ -57,22 +57,23 @@ ON TIME
 <br><hr><br>
   <p id="id01"></p><br><br>
 <script>
-function test() {
+function fetch() {
 var r = new XMLHttpRequest();
 var token = document.getElementById("token").value;
 var start = document.getElementById("start").value;
 var end = document.getElementById("end").value;  
 var url1 = "https://crosstracks2.apphb.com/departures/";
-var url2 = "/to/"
-var url3 = "?accessToken="
-var points = [url1, start, url2, end, url3, token];
+var url2 = "/to/";
+var url3 = "?accessToken=";
+var url4 = "&expand=true";
+var points = [url1, start, url2, end, url3, token, url4];
 var url0 = points.join('');
 r.open("GET", url0, true);
 r.onreadystatechange = function () {
     if (r.readyState != 4 || r.status != 200) return;
     var resp = JSON.parse(r.response);
     if (resp.trainServices && resp.trainServices.length > 0) {
-      document.getElementById("id01").innerHTML = "The next train to arrive at " + resp.locationName + " for " + resp.trainServices[0].destination[0].locationName + " will get in at " + resp.trainServices[0].sta + " (" + resp.trainServices[0].etd + ").";
+      document.getElementById("id01").innerHTML = "The next train to arrive at " + resp.locationName + " for " + resp.trainServices[0].destination[0].locationName + " will get in at " + resp.trainServices[0].eta + " (" + resp.trainServices[0].etd + ").";
 document.getElementById("1aID").innerHTML = resp.locationName;
 document.getElementById("1bID").innerHTML = resp.trainServices[0].destination[0].locationName;
 document.getElementById("1cID").innerHTML = resp.trainServices[0].std;
