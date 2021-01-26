@@ -86,7 +86,7 @@ document.getElementById("2dID").innerHTML = resp.trainServices[1].operator;
 document.getElementById("2eID").innerHTML = resp.trainServices[1].etd;
 document.getElementById("msgID").innerHTML = resp.nrccMessages;
  } else {
-        alert("Sorry, no trains from " + resp.filterLocationName + " arriving soon");
+        alert("Sorry, no trains from " + resp.filterLocationName + " arriving soon. Check if you made a typo in the station code.");
     }
 };
 r.send();
