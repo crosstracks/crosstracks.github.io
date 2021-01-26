@@ -133,7 +133,7 @@ document.getElementById("msgID").innerHTML = resp.nrccMessages;
 };
 r.send();
 };
-      var myBooks = resp.trainServices[0].previousCallingPoints[0].callingPoint
+      var myBooks = resp.trainServices[0].previousCallingPoints[0].callingPoint["locationName"];
       
 
       // EXTRACT VALUE FOR HTML HEADER. 
