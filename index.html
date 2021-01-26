@@ -10,6 +10,7 @@
 </head>
 <body>
 <h1>Please note, this page is incomplete.</h1>
+<h2>Not for general use</h2>
 <h3>To start, please fill this in:</h3>
 
   From: <input type="text" id="start" name="start">
@@ -30,7 +31,7 @@ TO
 ARRIVING
 </th>
 <th>
-PLAT.
+COMPANY
 </th>
 <th>
 ON TIME
@@ -41,6 +42,7 @@ ON TIME
 <td id="1cID"></td>
 <td id="1dID"></td>
 <td id="1eID"></td>
+<td id="info1ID"></td>
 </tr>
 <tr>
 <td id="2aID"></td>
@@ -48,6 +50,7 @@ ON TIME
 <td id="2cID"></td>
 <td id="2dID"></td>
 <td id="2eID"></td>
+<td id="info2ID"></td>
 </tr>
 </table>
 <div id="msgID" ></div>
@@ -73,12 +76,12 @@ r.onreadystatechange = function () {
 document.getElementById("1aID").innerHTML = resp.locationName;
 document.getElementById("1bID").innerHTML = resp.trainServices[0].destination[0].locationName;
 document.getElementById("1cID").innerHTML = resp.trainServices[0].std;
-document.getElementById("1dID").innerHTML = resp.trainServices[0].platform;
+document.getElementById("1dID").innerHTML = resp.trainServices[0].operator;
 document.getElementById("1eID").innerHTML = resp.trainServices[0].etd;
 document.getElementById("2aID").innerHTML = resp.locationName;
 document.getElementById("2bID").innerHTML = resp.trainServices[1].destination[0].locationName;
 document.getElementById("2cID").innerHTML = resp.trainServices[1].std;
-document.getElementById("2dID").innerHTML = resp.trainServices[1].platform;
+document.getElementById("2dID").innerHTML = resp.trainServices[1].operator;
 document.getElementById("2eID").innerHTML = resp.trainServices[1].etd;
 document.getElementById("msgID").innerHTML = resp.nrccMessages;
  } else {
