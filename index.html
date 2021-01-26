@@ -63,10 +63,10 @@ var r = new XMLHttpRequest();
 var token = document.getElementById("token").value;
 var start = document.getElementById("start").value;
 var end = document.getElementById("end").value;  
-var url1 = "https://crosstracks2.apphb.com/all/";
-var url2 = "/from/"
+var url1 = "https://crosstracks2.apphb.com/departures/";
+var url2 = "/to/"
 var url3 = "?accessToken="
-var points = [url1, end, url2, start, url3, token];
+var points = [url1, start, url2, end, url3, token];
 var url0 = points.join('');
 r.open("GET", url0, true);
 r.onreadystatechange = function () {
