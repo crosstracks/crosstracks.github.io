@@ -76,7 +76,7 @@ r.onreadystatechange = function () {
     if (r.readyState != 4 || r.status != 200) return;
     var resp = JSON.parse(r.response);
     if (resp.trainServices && resp.trainServices.length > 0) {
-      document.getElementById("id01").innerHTML = "The next train to arrive at " + resp.locationName + " for " + resp.trainServices[0].destination[0].locationName + " will get in at " + resp.trainServices[0].previousCallingPoints.callingPoint + " (" + resp.trainServices[0].etd + ").";
+      document.getElementById("id01").innerHTML = "The next train to arrive at " + resp.locationName + " for " + resp.trainServices[0].destination[0].locationName + " will get in at " + resp.trainServices[0].previousCallingPoints[0].callingPoint[0].locationName + " (" + resp.trainServices[0].etd + ").";
 document.getElementById("1aID").innerHTML = resp.locationName;
 document.getElementById("1bID").innerHTML = resp.trainServices[0].destination[0].locationName;
 document.getElementById("1cID").innerHTML = resp.trainServices[0].std;
