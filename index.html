@@ -76,7 +76,7 @@ r.onreadystatechange = function () {
     if (r.readyState != 4 || r.status != 200) return;
     var resp = JSON.parse(r.response);
     if (resp.trainServices && resp.trainServices.length > 0) {
-      document.getElementById("id01").innerHTML = "The next train to arrive at " + resp.locationName + " for " + resp.trainServices[0].destination[0].locationName + " will get in at " + resp.trainServices[0].eta + " (" + resp.trainServices[0].etd + ").";
+      document.getElementById("id01").innerHTML = "The next train to arrive at " + resp.locationName + " for " + resp.trainServices[0].destination[0].locationName + " will get in at " + resp.trainServices[0].previousCallingPoints[0].callingPoint + " (" + resp.trainServices[0].etd + ").";
 document.getElementById("1aID").innerHTML = resp.locationName;
 document.getElementById("1bID").innerHTML = resp.trainServices[0].destination[0].locationName;
 document.getElementById("1cID").innerHTML = resp.trainServices[0].std;
@@ -96,16 +96,11 @@ r.send();
 };
 </script>
 
-
-<input type="button" id = "btnAdd" onclick = "AddDropDownList()" value = "Get results" />
-<hr/>
-<table id="tblContainer" cellpadding="5" cellspacing="5"></table>
-
-
-
-<script type="text/javascript">
-    function AddDropDownList() {
-      var r = new XMLHttpRequest();
+<input type="button" onclick="CreateTableFromJSON()" value="Create Table From JSON" />
+<p id="showData"></p>
+<script>
+  function CreateTableFromJSON() {
+var r = new XMLHttpRequest();
 var token = document.getElementById("token").value;
 var start = document.getElementById("start").value;
 var end = document.getElementById("end").value;  
@@ -120,51 +115,66 @@ r.onreadystatechange = function () {
     if (r.readyState != 4 || r.status != 200) return;
     var resp = JSON.parse(r.response);
     if (resp.trainServices && resp.trainServices.length > 0) {
-        //Build an array containing Customer records.
-        var calling = resp.trainServices[1].previouscallingpoints[0].callingPoint;
-
-        //Add the Options to the DropDownList.
-        $(locationName).each(function () {
-           var option = $("<option />");
-
-            //Set Customer Name in Text part.
-            option.html(this.Name);
-
-            //Set Customer CustomerId in Value part.
-            option.val(this.CustomerId);
-
-            //Add the Option element to DropDownList.
-            ddlLocationName.append(option);
-        });
-
-        //Reference the container Table.
-        var tblContainer = $("#tblContainer");
-
-        //Add the Table row.
-        var row = tblContainer[0].insertRow(-1);
-
-        //Add the DropDownList to Table Row.
-        var cell = row.insertCell(-1);
-        $(cell).append(ddlLocationName);
-
-        //Create a Remove Button.
-        var btnRemove = $("<input type = 'button' value = 'Hide'/>");
-        btnRemove.click(function () {
-            //Determine the reference of the Row using the Button.
-            var row = btnRemove.closest("TR");
-
-            //Delete the Table row.
-            row.remove();
-        });
-
-        //Add the Remove Buttton to Table Row.
-        cell = row.insertCell(-1);
-        $(cell).append(btnRemove);
+      document.getElementById("id01").innerHTML = "The next train to arrive at " + resp.locationName + " for " + resp.trainServices[0].destination[0].locationName + " will get in at " + resp.trainServices[0].eta + " (" + resp.trainServices[0].etd + ").";
+document.getElementById("1aID").innerHTML = resp.locationName;
+document.getElementById("1bID").innerHTML = resp.trainServices[0].destination[0].locationName;
+document.getElementById("1cID").innerHTML = resp.trainServices[0].std;
+document.getElementById("1dID").innerHTML = resp.trainServices[0].operator;
+document.getElementById("1eID").innerHTML = resp.trainServices[0].etd;
+document.getElementById("2aID").innerHTML = resp.locationName;
+document.getElementById("2bID").innerHTML = resp.trainServices[1].destination[0].locationName;
+document.getElementById("2cID").innerHTML = resp.trainServices[1].std;
+document.getElementById("2dID").innerHTML = resp.trainServices[1].operator;
+document.getElementById("2eID").innerHTML = resp.trainServices[1].etd;
+document.getElementById("msgID").innerHTML = resp.nrccMessages;
  } else {
         alert("Sorry, no trains from " + resp.filterLocationName + " arriving soon. Check if you made a typo in the station code.");
     }
 };
 r.send();
 };
+      var myBooks = resp.trainServices[0].previousCallingPoints[0].callingPoint
+      
+
+      // EXTRACT VALUE FOR HTML HEADER. 
+      // ('Book ID', 'Book Name', 'Category' and 'Price')
+      var col = [];
+      for (var i = 0; i < myBooks.length; i++) {
+          for (var key in myBooks[i]) {
+              if (col.indexOf(key) === -1) {
+                  col.push(key);
+              }
+          }
+      }
+
+      // CREATE DYNAMIC TABLE.
+      var table = document.createElement("table");
+
+      // CREATE HTML TABLE HEADER ROW USING THE EXTRACTED HEADERS ABOVE.
+
+      var tr = table.insertRow(-1);                   // TABLE ROW.
+
+      for (var i = 0; i < col.length; i++) {
+          var th = document.createElement("th");      // TABLE HEADER.
+          th.innerHTML = col[i];
+          tr.appendChild(th);
+      }
+
+      // ADD JSON DATA TO THE TABLE AS ROWS.
+      for (var i = 0; i < myBooks.length; i++) {
+
+          tr = table.insertRow(-1);
+
+          for (var j = 0; j < col.length; j++) {
+              var tabCell = tr.insertCell(-1);
+              tabCell.innerHTML = myBooks[i][col[j]];
+          }
+      }
+
+      // FINALLY ADD THE NEWLY CREATED TABLE WITH JSON DATA TO A CONTAINER.
+      var divContainer = document.getElementById("showData");
+      divContainer.innerHTML = "";
+      divContainer.appendChild(table);
+    
 </script>
 </body>
