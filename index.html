@@ -92,21 +92,29 @@ document.getElementById("msgID").innerHTML = resp.nrccMessages;
 r.send();
 };
 </script>
-<input type="button" id = "btnAdd" onclick = "AddDropDownList()" value = "Add DropDownList" />
-<hr />
+<input type="button" id = "btnAdd" onclick = "AddDropDownList()" value = "Get results" />
+<hr/>
 <table id="tblContainer" cellpadding="5" cellspacing="5"></table>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 <script type="text/javascript">
     function AddDropDownList() {
+      var r = new XMLHttpRequest();
+var token = document.getElementById("token").value;
+var start = document.getElementById("start").value;
+var end = document.getElementById("end").value;  
+var url1 = "https://crosstracks2.apphb.com/departures/";
+var url2 = "/to/";
+var url3 = "?accessToken=";
+var url4 = "&expand=true";
+var points = [url1, start, url2, end, url3, token, url4];
+var url0 = points.join('');
+r.open("GET", url0, true);
+r.onreadystatechange = function () {
+    if (r.readyState != 4 || r.status != 200) return;
+    var resp = JSON.parse(r.response);
+    if (resp.trainServices && resp.trainServices.length > 0) {
         //Build an array containing Customer records.
-        var customers = [
-            { CustomerId: 1, Name: "John Hammond", Country: "United States" },
-            { CustomerId: 2, Name: "Mudassar Khan", Country: "India" },
-            { CustomerId: 3, Name: "Suzanne Mathews", Country: "France" },
-            { CustomerId: 4, Name: "Robert Schidner", Country: "Russia" }
-        ];
-        //Create a DropDownList element.
-        var ddlCustomers = $("<select />");
+        var calling = resp.trainServices[1].previouscallingpoints;
 
         //Add the Options to the DropDownList.
         $(customers).each(function () {
@@ -133,7 +141,7 @@ r.send();
         $(cell).append(ddlCustomers);
 
         //Create a Remove Button.
-        var btnRemove = $("<input type = 'button' value = 'Remove'/>");
+        var btnRemove = $("<input type = 'button' value = 'Hide'/>");
         btnRemove.click(function () {
             //Determine the reference of the Row using the Button.
             var row = btnRemove.closest("TR");
@@ -145,6 +153,11 @@ r.send();
         //Add the Remove Buttton to Table Row.
         cell = row.insertCell(-1);
         $(cell).append(btnRemove);
-    };
+ } else {
+        alert("Sorry, no trains from " + resp.filterLocationName + " arriving soon. Check if you made a typo in the station code.");
+    }
+};
+r.send();
+};
 </script>
 </body>
