@@ -74,12 +74,12 @@ r.onreadystatechange = function () {
     var resp = JSON.parse(r.response);
     if (resp.trainServices && resp.trainServices.length > 0) {
       document.getElementById("id01").innerHTML = "The next train to arrive at " + resp.locationName + " for " + resp.filterLocationName + " will get in at " + resp.trainServices[0].sta + " on platform " + resp.trainServices[0].platform + " (" + resp.trainServices[0].etd + ").";
-document.getElementById("1aID").innerHTML = resp.filterLocationName;
+document.getElementById("1aID").innerHTML = resp.LocationName;
 document.getElementById("1bID").innerHTML = resp.trainServices[0].destination[0].locationName;
 document.getElementById("1cID").innerHTML = resp.trainServices[0].std;
 document.getElementById("1dID").innerHTML = resp.trainServices[0].platform;
 document.getElementById("1eID").innerHTML = resp.trainServices[0].etd;
-document.getElementById("2aID").innerHTML = resp.filterLocationName;
+document.getElementById("2aID").innerHTML = resp.LocationName;
 document.getElementById("2bID").innerHTML = resp.trainServices[1].destination[0].locationName;
 document.getElementById("2cID").innerHTML = resp.trainServices[1].std;
 document.getElementById("2dID").innerHTML = resp.trainServices[1].platform;
