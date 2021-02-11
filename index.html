@@ -78,7 +78,7 @@ r.onreadystatechange = function () {
     if (resp.trainServices && resp.trainServices.length > 0) {
       document.getElementById("id01").innerHTML = "The next train to arrive at " + resp.locationName + " for " + resp.trainServices[0].destination[0].locationName + " will get in from " + resp.trainServices[0].previousCallingPoints[0].locationName + " (" + resp.trainServices[0].etd + ").";
 document.getElementById("1aID").innerHTML = resp.locationName;
-document.getElementById("1bID").innerHTML = resp.trainServices[0].destination.[0].locationName;
+document.getElementById("1bID").innerHTML = resp.trainServices[0].destination[0].locationName;
 document.getElementById("1cID").innerHTML = resp.trainServices[0].std;
 document.getElementById("1dID").innerHTML = resp.trainServices[0].operator;
 document.getElementById("1eID").innerHTML = resp.trainServices[0].etd;
@@ -116,7 +116,7 @@ r.onreadystatechange = function () {
     var resp = JSON.parse(r.response);
     if (resp.trainServices && resp.trainServices.length > 0) {
       document.getElementById("id01").innerHTML = "The next train to arrive at " + resp.locationName + " for " + resp.trainServices[0].destination[0].locationName + " will leave at " + resp.trainServices[0].std + " (" + resp.trainServices[0].etd + ").";
-      var myBooks = resp.trainServices[0].previousCallingPoints[0].callingPoint["locationName"];
+      var myBooks = resp.trainServices[0].previousCallingPoints.callingPoint[0].locationName;
       
 
       // EXTRACT VALUE FOR HTML HEADER. 
