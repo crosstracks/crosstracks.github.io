@@ -2,17 +2,23 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
- 
+
 @Injectable({ providedIn: 'root' })
- 
+
 export class TrainInformationService {
- 
+
     constructor(private http: HttpClient) { }
- 
-    url = 'https://crosstracks2.apphb.com/departures/ahv';
- 
-    getTrainInformation(): Observable {
-        return this.http.get(this.url,
+
+    private readonly coreURL: string = 'https://crosstracks.apphb.com/departures/';
+
+    // return the coreUrl with the crs code appended.
+    getFullUrl(crsCode: string): string {
+        return this.coreURL + crsCode;
+    }
+
+    // call the huxley api
+    getTrainInformation(url: string): Observable<any> {
+        return this.http.get(url,
             {
                 params:
                 {
@@ -21,7 +27,8 @@ export class TrainInformationService {
             }
         ).pipe(catchError(this.handleError));
     }
- 
+
+    // Basic error handling if call to huxley has failed
     private handleError(error: HttpErrorResponse) {
         if (error.error instanceof ErrorEvent) {
             // a client-side or network error has occurred
@@ -29,8 +36,8 @@ export class TrainInformationService {
         } else {
             // The backend returned an unsuccessful response code
             // The response body may contain clues as to what went wrong
-            console.log(`Backend returned code ${error.status},` +
-                        `body was: ${error.error}`);
+            console.log('Backend returned code: ', error.status);
+            console.log('body was: ', error.error);
         }
         // return an observable with a user-facing error message
         return throwError('Something bad has happened; please try again later.');
