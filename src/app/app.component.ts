@@ -16,13 +16,13 @@ export class AppComponent implements OnInit, OnDestroy {
 
   trainServices: any;
   callingAt = Array<string>();
-  callingAtCSV: string;
+  callingAtCSV: string | undefined;
   departureBoard = Array<DepartureBoard>();
-  subscription: Subscription;
-  noTrainInformation: boolean;
+  subscription: Subscription | undefined;
+  noTrainInformation: boolean | undefined;
   time = new Date();
-  timer: number;
-  trainStationNames: string[];
+  timer: number | undefined;
+  trainStationNames: string[] | undefined;
 
   private readonly defaultTrainStationURL = 'https://huxley-23.apphb.com/departures/lbo';
 
