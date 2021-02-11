@@ -13,6 +13,9 @@ declare let $: any;
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit, OnDestroy {
+  title(title: any) {
+    throw new Error('Method not implemented.');
+  }
 
   trainServices: any;
   callingAt = Array<string>();
