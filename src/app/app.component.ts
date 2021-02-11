@@ -18,7 +18,7 @@ export class AppComponent implements OnInit, OnDestroy {
   callingAt = Array<string>();
   callingAtCSV: string | undefined;
   departureBoard = Array<DepartureBoard>();
-  subscription: Subscription | undefined;
+  subscription: Subscription;
   noTrainInformation: boolean | undefined;
   time = new Date();
   timer: number | undefined;
