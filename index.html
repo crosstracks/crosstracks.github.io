@@ -116,7 +116,7 @@ r.onreadystatechange = function () {
     var resp = JSON.parse(r.response);
     if (resp.trainServices && resp.trainServices.length > 0) {
       document.getElementById("id01").innerHTML = "The next train to arrive at " + resp.locationName + " for " + resp.trainServices[0].destination[0].locationName + " will leave at " + resp.trainServices[0].std + " (" + resp.trainServices[0].etd + ").";
-      var myBooks = resp.trainServices[0].previousCallingPoints.callingPoint[0].locationName;
+      var myBooks = resp.trainServices[0].previousCallingPoints.locationName[0];
       
 
       // EXTRACT VALUE FOR HTML HEADER. 

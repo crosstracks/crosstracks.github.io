@@ -1,0 +1,39 @@
+<div class="container border" *ngIf="noTrainInformation">
+      <div class="row">
+         <div class="col text-center">There is currently no train information available</div>   
+      </div>
+</div>
+<div class="container header">
+   <div class="row">
+      <div class="col-12"><h1>Departures</h1></div>
+   </div>
+   <div class="row">
+      <div class="col-sm-1">Time</div>
+      <div class="col-sm-8">Destination</div>
+      <div class="col-sm-1 text-md-center">Platform</div>
+      <div class="col-sm-2 text-md-center">Expected</div>
+   </div>
+</div>
+<div class="container border" *ngFor="let train of departureBoard">   
+   <div class="row">
+      <div class="col-sm-1">{{ train.trainTime }}</div>      
+      <div class="col-sm-8 TrainDestination">{{ train.destination }}</div>
+      <div *ngIf="train.platform; then thenPlatformBlock else elseNoPlatformBlock"></div>
+      <ng-template #thenPlatformBlock><div class="col-sm-1 text-md-center">{{ train.platform }}</div></ng-template>
+      <ng-template #elseNoPlatformBlock><div class="col-sm-1 text-md-center">To be confirmed</div></ng-template>
+      <div class="col-sm-2 text-md-center">{{ train.etd }}</div>
+   </div>
+   <div class="row">
+      <div class="col" *ngIf="train.cancelReason; thenCancelBlock"></div>
+      <ng-template #thenCancelBlock>{{ train.cancelReason }}</ng-template>
+   </div>     
+   <div class="row no-gutters">            
+      <div class="col-sm-12 col-md-1">Callling at:</div>         
+      <div class="col-sm-8 col-md-8">{{ train.callingAt }}</div>
+   </div>
+</div>
+<div class="container footer">
+   <div class="row">
+      <div class="col text-right">Time now: {{ time | date: 'HH:mm:ss' }} </div>
+   </div>
+</div>
