@@ -9,7 +9,7 @@ export class TrainInformationService {
  
     constructor(private http: HttpClient) { }
  
-    url = 'https://ichuxley.azurewebsites.net/departures/lbo';
+    url = 'https://crosstracks2.apphb.com/departures/ahv';
  
     getTrainInformation(): Observable {
         return this.http.get(this.url,
