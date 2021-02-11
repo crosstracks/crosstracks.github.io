@@ -16,6 +16,10 @@
   <div class="col-12"><h1>Departures</h1></div>
 </div>
 <div class="row">
+  <input type="text" class="form-control col-sm-6 ml-md-3" id="stationName" value="Loughborough (Leics)" (keyup.enter)="trainStationSelected(stationName.value)" #stationName>
+  <button class="btn btn-warning" id="selectStationName" (click)="trainStationSelected(stationName.value)">Select</button>
+</div>
+<div class="row">
   <div class="col-sm-1">Time</div>
   <div class="col-sm-8">Destination</div>
   <div class="col-sm-1 text-md-center">Platform</div>
@@ -36,7 +40,7 @@
   <ng-template #thenCancelBlock>{{ train.cancelReason }}</ng-template>
 </div>     
 <div class="row no-gutters">            
-  <div class="col-sm-12 col-md-1">Callling at:</div>         
+  <div class="col-sm-12 col-md-1">Calling at:</div>         
   <div class="col-sm-8 col-md-8">{{ train.callingAt }}</div>
 </div>
 </div>
@@ -45,7 +49,6 @@
   <div class="col text-right">Time now: {{ time | date: 'HH:mm:ss' }} </div>
 </div>
 </div>
-
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 <!-- * * * * * * * * * * * The content above * * * * * * * * * * * -->
 <!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->
